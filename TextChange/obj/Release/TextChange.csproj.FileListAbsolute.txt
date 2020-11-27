@@ -1,0 +1,9 @@
+D:\Projects\TextChange\TextChange\bin\Release\TextChange.exe.config
+D:\Projects\TextChange\TextChange\bin\Release\TextChange.exe
+D:\Projects\TextChange\TextChange\bin\Release\TextChange.pdb
+D:\Projects\TextChange\TextChange\obj\Release\TextChange.Form1.resources
+D:\Projects\TextChange\TextChange\obj\Release\TextChange.Properties.Resources.resources
+D:\Projects\TextChange\TextChange\obj\Release\TextChange.csproj.GenerateResource.cache
+D:\Projects\TextChange\TextChange\obj\Release\TextChange.csproj.CoreCompileInputs.cache
+D:\Projects\TextChange\TextChange\obj\Release\TextChange.exe
+D:\Projects\TextChange\TextChange\obj\Release\TextChange.pdb
