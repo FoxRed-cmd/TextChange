@@ -11,10 +11,17 @@ namespace TextChange
 		int size;
 		string font;
 		string style;
-		string color;
+		string color, welcome = "Привет, чёрт)\r\nЧё как?\r\nНаше знакомство как-то не заладилось, но теперь ты можешь изменять меня полностью)\r\n\r\nИЗМЕНЯЙ МЕНЯ ПОЛНОСТЬЮ!!!" +
+			"\r\n\r\nКнопка сохранить позволяет сохранить файл.txt на рабочий стол!!!\r\nЯ теперь почти блокнот)\r\n\r\n\r\n©\"LOLisCorporation\"";
+
+
+
+
+
 		long count;
 		long num_file;
 		string save_path;
+		
 
 		public Form1()
 		{
@@ -38,18 +45,37 @@ namespace TextChange
 			}
 			size = 8;
 			font = "Microsoft Sans Serif";
+
+			
+			
+			char[] arr = welcome.ToCharArray();
+
+			for (int i = 0; i < arr.Length; i++)
+			{
+				textBox1.Text += arr[i].ToString();
+				await Task.Delay(50);
+			}
+			
+			
 		}
 
-		private void button1_Click(object sender, EventArgs e)
+		void button1_Click(object sender, EventArgs e)
 		{
 			style = comboBox2.SelectedItem == null ? "Обычный" : comboBox2.SelectedItem.ToString();
 			color = comboBox3.SelectedItem == null ? "Black" : comboBox3.SelectedItem.ToString();
 
 			if (radioButton1.Checked)
 			{
-				size = Convert.ToInt32(comboBox1.Text);
-				textBox1.Font = new Font(font, size, FontStyle.Regular, GraphicsUnit.Point, ((byte)(204)));
-
+				try
+				{
+					size = Convert.ToInt32(comboBox1.Text);
+					textBox1.Font = new Font(font, size, FontStyle.Regular, GraphicsUnit.Point, ((byte)(204)));
+				}
+				catch (Exception ex)
+				{
+					MessageBox.Show(ex.Message + "\n Ай-яй-яй!!! Пиши сюда только цифры) а про 0 забудь вообще...", "Error 404", MessageBoxButtons.OK, MessageBoxIcon.Error);
+					size = 8;
+				}
 			}
 
 			else if (radioButton2.Checked)
@@ -222,5 +248,6 @@ namespace TextChange
 				comboBox4.Visible = false;
 			}
 		}
+
 	}
 }

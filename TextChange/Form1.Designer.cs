@@ -224,7 +224,6 @@ namespace TextChange
 			this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
 			this.textBox1.Size = new System.Drawing.Size(251, 277);
 			this.textBox1.TabIndex = 2;
-			this.textBox1.Text = resources.GetString("textBox1.Text");
 			this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
 			// 
 			// Form1
