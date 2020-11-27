@@ -11,13 +11,8 @@ namespace TextChange
 		int size;
 		string font;
 		string style;
-		string color, welcome = "Привет, чёрт)\r\nЧё как?\r\nНаше знакомство как-то не заладилось, но теперь ты можешь изменять меня полностью)\r\n\r\nИЗМЕНЯЙ МЕНЯ ПОЛНОСТЬЮ!!!" +
-			"\r\n\r\nКнопка сохранить позволяет сохранить файл.txt на рабочий стол!!!\r\nЯ теперь почти блокнот)\r\n\r\n\r\n©\"LOLisCorporation\"";
-
-
-
-
-
+		string color/*, welcome = "Привет, чёрт)\r\nЧё как?\r\nНаше знакомство как-то не заладилось, но теперь ты можешь изменять меня полностью)\r\n\r\nИЗМЕНЯЙ МЕНЯ ПОЛНОСТЬЮ!!!" +
+			"\r\n\r\nКнопка сохранить позволяет сохранить файл.txt на рабочий стол!!!\r\nЯ теперь почти блокнот)\r\n\r\n\r\n©\"LOLisCorporation\""*/;
 		long count;
 		long num_file;
 		string save_path;
@@ -48,13 +43,13 @@ namespace TextChange
 
 
 
-			char[] arr = welcome.ToCharArray();
+			/*char[] arr = welcome.ToCharArray();
 
 			for (int i = 0; i < arr.Length; i++)
 			{
 				textBox1.Text += arr[i].ToString();
 				await Task.Delay(50);
-			}
+			}*/
 
 
 		}
@@ -185,15 +180,23 @@ namespace TextChange
 		{
 			try
 			{
-				num_file++;
-				save_path = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory);
-				using (FileStream fstream = new FileStream($"{save_path + "\\"}File_{num_file}.txt", FileMode.OpenOrCreate))
+				bool flag = true;
+				do
 				{
-					byte[] array = System.Text.Encoding.UTF8.GetBytes(textBox1.Text);
-					fstream.Write(array, 0, array.Length);
-				}
+					num_file++;
+					save_path = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory);
+					if (!File.Exists($"{save_path + "\\"}File_{num_file}.txt"))
+					{
+						using (FileStream fstream = new FileStream($"{save_path + "\\"}File_{num_file}.txt", FileMode.OpenOrCreate))
+						{
+							byte[] array = System.Text.Encoding.UTF8.GetBytes(textBox1.Text);
+							fstream.Write(array, 0, array.Length);
+						}
+						flag = false;
+						MessageBox.Show("Сохранено", "Сохранить", MessageBoxButtons.OK, MessageBoxIcon.Information);
+					}
 
-				MessageBox.Show("Сохранено", "Сохранить", MessageBoxButtons.OK, MessageBoxIcon.Information);
+				} while (flag);
 			}
 			catch (Exception)
 			{
