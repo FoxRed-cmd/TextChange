@@ -218,6 +218,7 @@ namespace TextChange
 			// 
 			// textBox1
 			// 
+			this.textBox1.AllowDrop = true;
 			this.textBox1.Location = new System.Drawing.Point(220, 12);
 			this.textBox1.Multiline = true;
 			this.textBox1.Name = "textBox1";
@@ -225,6 +226,9 @@ namespace TextChange
 			this.textBox1.Size = new System.Drawing.Size(251, 277);
 			this.textBox1.TabIndex = 2;
 			this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+			this.textBox1.DragDrop += new System.Windows.Forms.DragEventHandler(this.textBox1_DragDrop);
+			this.textBox1.DragEnter += new System.Windows.Forms.DragEventHandler(this.textBox1_DragEnter);
+			this.textBox1.DragLeave += new System.EventHandler(this.textBox1_DragLeave);
 			// 
 			// Form1
 			// 

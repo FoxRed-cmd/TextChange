@@ -21,7 +21,7 @@ namespace TextChange
 		long count;
 		long num_file;
 		string save_path;
-		
+
 
 		public Form1()
 		{
@@ -46,8 +46,8 @@ namespace TextChange
 			size = 8;
 			font = "Microsoft Sans Serif";
 
-			
-			
+
+
 			char[] arr = welcome.ToCharArray();
 
 			for (int i = 0; i < arr.Length; i++)
@@ -55,8 +55,8 @@ namespace TextChange
 				textBox1.Text += arr[i].ToString();
 				await Task.Delay(50);
 			}
-			
-			
+
+
 		}
 
 		void button1_Click(object sender, EventArgs e)
@@ -189,9 +189,10 @@ namespace TextChange
 				save_path = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory);
 				using (FileStream fstream = new FileStream($"{save_path + "\\"}File_{num_file}.txt", FileMode.OpenOrCreate))
 				{
-					byte[] array = System.Text.Encoding.Default.GetBytes(textBox1.Text);
+					byte[] array = System.Text.Encoding.UTF8.GetBytes(textBox1.Text);
 					fstream.Write(array, 0, array.Length);
 				}
+
 				MessageBox.Show("Сохранено", "Сохранить", MessageBoxButtons.OK, MessageBoxIcon.Information);
 			}
 			catch (Exception)
@@ -199,6 +200,7 @@ namespace TextChange
 				MessageBox.Show("Упс, что-то пошло не так и теперь твоя motherboard сгорела... Ха-ха, шутка)",
 					"Сохранить", MessageBoxButtons.OK, MessageBoxIcon.Information);
 			}
+
 		}
 
 		private void radioButton1_CheckedChanged(object sender, EventArgs e)
@@ -248,6 +250,36 @@ namespace TextChange
 				comboBox4.Visible = false;
 			}
 		}
+
+
+		private void textBox1_DragEnter(object sender, DragEventArgs e)
+		{
+			if (e.Data.GetDataPresent(DataFormats.FileDrop))
+			{
+				e.Effect = DragDropEffects.Copy;
+			}
+
+		}
+
+		private void textBox1_DragLeave(object sender, EventArgs e)
+		{
+
+		}
+
+		private void textBox1_DragDrop(object sender, DragEventArgs e)
+		{
+			string[] read = (string[])e.Data.GetData(DataFormats.FileDrop);
+			string files = read[0].ToString();
+			using (FileStream file = File.OpenRead(files))
+			{
+				using (StreamReader streamReader = new StreamReader(file, System.Text.Encoding.UTF8))
+				{
+					textBox1.Text = streamReader.ReadToEnd();
+				}
+			}
+		}
+
+
 
 	}
 }

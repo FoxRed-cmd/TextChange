@@ -1,7 +1,6 @@
 D:\Projects\TextChange\TextChange\bin\Debug\TextChange.exe.config
 D:\Projects\TextChange\TextChange\bin\Debug\TextChange.exe
 D:\Projects\TextChange\TextChange\bin\Debug\TextChange.pdb
-D:\Projects\TextChange\TextChange\obj\Debug\TextChange.csprojAssemblyReference.cache
 D:\Projects\TextChange\TextChange\obj\Debug\TextChange.Form1.resources
 D:\Projects\TextChange\TextChange\obj\Debug\TextChange.Properties.Resources.resources
 D:\Projects\TextChange\TextChange\obj\Debug\TextChange.csproj.GenerateResource.cache
