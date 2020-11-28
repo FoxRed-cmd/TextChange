@@ -16,11 +16,13 @@ namespace TextChange
 		long count;
 		long num_file;
 		string save_path;
+		
 
 
 		public Form1()
 		{
 			InitializeComponent();
+
 			count = 0;
 			Text = "Блокнотик";
 			groupBox1.Text = "Параметры";
@@ -28,7 +30,87 @@ namespace TextChange
 			radioButton2.Text = "Стиль";
 			radioButton3.Text = "Цвет";
 			radioButton4.Text = "Шрифт";
-			button1.Text = "Выполнить";
+
+			radioButton1.CheckedChanged += (a, e) =>
+			{
+				if (radioButton1.Checked) comboBox1.Visible = true;
+				else
+				{
+					comboBox1.Visible = false;
+					try
+					{
+						style = comboBox2.SelectedItem == null ? "Обычный" : comboBox2.SelectedItem.ToString();
+						size = comboBox1.Text == "" ? 8 : Convert.ToInt32(comboBox1.Text);
+						Check_style();
+					}
+					catch (Exception ex)
+					{
+						MessageBox.Show(ex.Message + "\n Ай-яй-яй!!! Пиши сюда только цифры) а про 0 забудь вообще...", "Error 404", MessageBoxButtons.OK, MessageBoxIcon.Error);
+						size = 8;
+					}
+				}					
+			};
+			radioButton2.CheckedChanged += (a, e) =>
+			{
+				if (radioButton2.Checked) comboBox2.Visible = true;
+				else
+				{
+					comboBox2.Visible = false;
+					style = comboBox2.SelectedItem == null ? "Обычный" : comboBox2.SelectedItem.ToString();
+					Check_style();
+				} 
+			};
+			radioButton3.CheckedChanged += (a, e) =>
+			{
+				if (radioButton3.Checked) comboBox3.Visible = true;
+				else
+				{
+					comboBox3.Visible = false;
+					color = comboBox3.SelectedItem == null ? "Black" : comboBox3.SelectedItem.ToString();
+					Check_color();
+				}
+			};
+			radioButton4.CheckedChanged += (a, e) =>
+			{
+				if (radioButton4.Checked) comboBox4.Visible = true;
+				else
+				{
+					comboBox4.Visible = false;
+					style = comboBox2.SelectedItem == null ? "Обычный" : comboBox2.SelectedItem.ToString();
+					font = comboBox4.SelectedItem == null ? "Microsoft Sans Serif" : comboBox4.SelectedItem.ToString();
+					Check_style();
+				}
+			};
+		}
+		void Check_color()
+		{
+			if (color == "Красный")
+			{
+				textBox1.ForeColor = Color.Red;
+			}
+			else if (color == "Зелёный")
+			{
+				textBox1.ForeColor = Color.Green;
+			}
+			else if (color == "Синий")
+			{
+				textBox1.ForeColor = Color.Blue;
+			}
+		}
+		void Check_style()
+		{
+			if (style == "Обычный")
+			{
+				textBox1.Font = new Font(font, size, FontStyle.Regular, GraphicsUnit.Point, ((byte)(204)));
+			}
+			else if (style == "Полужирный")
+			{
+				textBox1.Font = new Font(font, size, FontStyle.Bold, GraphicsUnit.Point, ((byte)(204)));
+			}
+			else if (style == "Курсив")
+			{
+				textBox1.Font = new Font(font, size, FontStyle.Italic, GraphicsUnit.Point, ((byte)(204)));
+			}
 		}
 
 		async void Form1_Load(object sender, EventArgs e)
@@ -41,85 +123,12 @@ namespace TextChange
 			size = 8;
 			font = "Microsoft Sans Serif";
 
-
-
 			/*char[] arr = welcome.ToCharArray();
-
 			for (int i = 0; i < arr.Length; i++)
 			{
 				textBox1.Text += arr[i].ToString();
 				await Task.Delay(50);
 			}*/
-
-
-		}
-
-		void button1_Click(object sender, EventArgs e)
-		{
-			style = comboBox2.SelectedItem == null ? "Обычный" : comboBox2.SelectedItem.ToString();
-			color = comboBox3.SelectedItem == null ? "Black" : comboBox3.SelectedItem.ToString();
-
-			if (radioButton1.Checked)
-			{
-				try
-				{
-					size = Convert.ToInt32(comboBox1.Text);
-					textBox1.Font = new Font(font, size, FontStyle.Regular, GraphicsUnit.Point, ((byte)(204)));
-				}
-				catch (Exception ex)
-				{
-					MessageBox.Show(ex.Message + "\n Ай-яй-яй!!! Пиши сюда только цифры) а про 0 забудь вообще...", "Error 404", MessageBoxButtons.OK, MessageBoxIcon.Error);
-					size = 8;
-				}
-			}
-
-			else if (radioButton2.Checked)
-			{
-				Check_style();
-			}
-
-			else if (radioButton3.Checked)
-			{
-				Check_color();
-			}
-
-			else
-			{
-				font = comboBox4.SelectedItem == null ? "Microsoft Sans Serif" : comboBox4.SelectedItem.ToString();
-				textBox1.Font = new Font(font, size, FontStyle.Regular, GraphicsUnit.Point, ((byte)(204)));
-			}
-
-			void Check_color()
-			{
-				if (color == "Красный")
-				{
-					textBox1.ForeColor = Color.Red;
-				}
-				else if (color == "Зелёный")
-				{
-					textBox1.ForeColor = Color.Green;
-				}
-				else if (color == "Синий")
-				{
-					textBox1.ForeColor = Color.Blue;
-				}
-			}
-			void Check_style()
-			{
-				if (style == "Обычный")
-				{
-
-					textBox1.Font = new Font(font, size, FontStyle.Regular, GraphicsUnit.Point, ((byte)(204)));
-				}
-				else if (style == "Полужирный")
-				{
-					textBox1.Font = new Font(font, size, FontStyle.Bold, GraphicsUnit.Point, ((byte)(204)));
-				}
-				else if (style == "Курсив")
-				{
-					textBox1.Font = new Font(font, size, FontStyle.Italic, GraphicsUnit.Point, ((byte)(204)));
-				}
-			}
 		}
 
 		private void button2_Click(object sender, EventArgs e)
@@ -142,8 +151,6 @@ namespace TextChange
 				comboBox2.ForeColor = SystemColors.WindowText;
 				comboBox3.ForeColor = SystemColors.WindowText;
 				comboBox4.ForeColor = SystemColors.WindowText;
-				button1.BackColor = SystemColors.ControlLight;
-				button1.ForeColor = SystemColors.ControlText;
 				button2.BackColor = SystemColors.ControlLight;
 				button2.ForeColor = SystemColors.ControlText;
 				button3.BackColor = SystemColors.ControlLight;
@@ -166,8 +173,6 @@ namespace TextChange
 				comboBox2.ForeColor = Color.LawnGreen;
 				comboBox3.ForeColor = Color.LawnGreen;
 				comboBox4.ForeColor = Color.LawnGreen;
-				button1.BackColor = SystemColors.ControlText;
-				button1.ForeColor = Color.LawnGreen;
 				button2.BackColor = SystemColors.ControlText;
 				button2.ForeColor = Color.LawnGreen;
 				button3.BackColor = SystemColors.ControlText;
@@ -206,66 +211,12 @@ namespace TextChange
 
 		}
 
-		private void radioButton1_CheckedChanged(object sender, EventArgs e)
-		{
-			if (radioButton1.Checked)
-			{
-				comboBox1.Visible = true;
-			}
-			else
-			{
-				comboBox1.Visible = false;
-			}
-		}
-
-		private void radioButton2_CheckedChanged(object sender, EventArgs e)
-		{
-			if (radioButton2.Checked)
-			{
-				comboBox2.Visible = true;
-			}
-			else
-			{
-				comboBox2.Visible = false;
-			}
-		}
-
-		private void radioButton3_CheckedChanged(object sender, EventArgs e)
-		{
-			if (radioButton3.Checked)
-			{
-				comboBox3.Visible = true;
-			}
-			else
-			{
-				comboBox3.Visible = false;
-			}
-		}
-
-		private void radioButton4_CheckedChanged(object sender, EventArgs e)
-		{
-			if (radioButton4.Checked)
-			{
-				comboBox4.Visible = true;
-			}
-			else
-			{
-				comboBox4.Visible = false;
-			}
-		}
-
-
 		private void textBox1_DragEnter(object sender, DragEventArgs e)
 		{
 			if (e.Data.GetDataPresent(DataFormats.FileDrop))
 			{
 				e.Effect = DragDropEffects.Copy;
 			}
-
-		}
-
-		private void textBox1_DragLeave(object sender, EventArgs e)
-		{
 
 		}
 
@@ -282,7 +233,24 @@ namespace TextChange
 			}
 		}
 
-
-
+		private void textBox1_Click(object sender, EventArgs e)
+		{
+			try
+			{
+				style = comboBox2.SelectedItem == null ? "Обычный" : comboBox2.SelectedItem.ToString();
+				size = comboBox1.Text == "" ? 8 : Convert.ToInt32(comboBox1.Text);
+				Check_style();
+			}
+			catch (Exception ex)
+			{
+				MessageBox.Show(ex.Message + "\n Ай-яй-яй!!! Пиши сюда только цифры) а про 0 забудь вообще...", "Error 404", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				size = 8;
+			}
+			style = comboBox2.SelectedItem == null ? "Обычный" : comboBox2.SelectedItem.ToString();
+			color = comboBox3.SelectedItem == null ? "Black" : comboBox3.SelectedItem.ToString();
+			font = comboBox4.SelectedItem == null ? "Microsoft Sans Serif" : comboBox4.SelectedItem.ToString();
+			Check_style();
+			Check_color();
+		}
 	}
 }
