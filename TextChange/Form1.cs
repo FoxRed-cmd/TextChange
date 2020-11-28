@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Drawing;
 using System.IO;
+using System.Net;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -30,6 +32,7 @@ namespace TextChange
 			radioButton2.Text = "Стиль";
 			radioButton3.Text = "Цвет";
 			radioButton4.Text = "Шрифт";
+			button1.Text = "Пробить IP";
 
 			radioButton1.CheckedChanged += (a, e) =>
 			{
@@ -155,6 +158,8 @@ namespace TextChange
 				button2.ForeColor = SystemColors.ControlText;
 				button3.BackColor = SystemColors.ControlLight;
 				button3.ForeColor = SystemColors.ControlText;
+				button1.BackColor = SystemColors.ControlLight;
+				button1.ForeColor = SystemColors.ControlText;
 				button2.Text = "Dark Mode";
 			}
 			else
@@ -177,6 +182,8 @@ namespace TextChange
 				button2.ForeColor = Color.LawnGreen;
 				button3.BackColor = SystemColors.ControlText;
 				button3.ForeColor = Color.LawnGreen;
+				button1.BackColor = SystemColors.ControlText;
+				button1.ForeColor = Color.LawnGreen;
 				button2.Text = "White Mode";
 			}
 		}
@@ -251,6 +258,38 @@ namespace TextChange
 			font = comboBox4.SelectedItem == null ? "Microsoft Sans Serif" : comboBox4.SelectedItem.ToString();
 			Check_style();
 			Check_color();
+		}
+
+		private void button1_Click(object sender, EventArgs e)
+		{
+			using (WebClient wc = new WebClient())
+			{
+				string ip_info = wc.DownloadString($"http://ip-api.com/xml/{textBox1.Text}");
+				Match match = Regex.Match(ip_info, "<country>(.*?)</country>");
+				Match match2 = Regex.Match(ip_info, "<regionName>(.*?)</regionName>");
+				Match match3 = Regex.Match(ip_info, "<city>(.*?)</city>");
+				Match match4 = Regex.Match(ip_info, "<lat>(.*?)</lat>");
+				Match match5 = Regex.Match(ip_info, "<lon>(.*?)</lon>");
+				textBox1.Text = match.Groups[1].Value + "\r\n" + match2.Groups[1].Value + "\r\n" + match3.Groups[1].Value + "\r\n" + match4.Groups[1].Value + "\r\n" + match5.Groups[1].Value;
+			}
+		}
+		ToolTip toolTip = new ToolTip();
+		private void button1_MouseHover(object sender, EventArgs e)
+		{
+			toolTip.Show("Чтобы узнать инфорацию об IP введите его в текстовое поле и нажмите F1 (или кнопку)", button1);
+		}
+		private void button1_MouseLeave(object sender, EventArgs e)
+		{
+			toolTip.Hide(button1);
+		}
+
+		private void Form1_KeyDown(object sender, KeyEventArgs e)
+		{
+			if (e.KeyValue == (char)Keys.F1)
+			{
+				button1_Click(button1, null);
+			}
+			
 		}
 	}
 }

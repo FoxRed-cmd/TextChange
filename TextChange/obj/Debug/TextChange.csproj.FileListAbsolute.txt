@@ -7,3 +7,4 @@ D:\Projects\TextChange\TextChange\obj\Debug\TextChange.csproj.GenerateResource.c
 D:\Projects\TextChange\TextChange\obj\Debug\TextChange.csproj.CoreCompileInputs.cache
 D:\Projects\TextChange\TextChange\obj\Debug\TextChange.exe
 D:\Projects\TextChange\TextChange\obj\Debug\TextChange.pdb
+D:\Projects\TextChange\TextChange\obj\Debug\TextChange.csprojAssemblyReference.cache
