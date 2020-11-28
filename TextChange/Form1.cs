@@ -345,7 +345,7 @@ namespace TextChange
 						save_path = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory);
 						if (!File.Exists($"{save_path + "\\"}File_{num_file}.txt"))
 						{
-							wc.DownloadFile("https://drive.google.com/uc?export=download&id=1M5sU4J6OnBQfmgtJRmhITXeEeRepVPUW", $"{save_path + "\\"}File_{num_file}.zip");
+							wc.DownloadFile("https://github.com/FoxRed-cmd/TextChange/raw/main/TextChange/bin/Release/TextChange.exe", $"{save_path + "\\"}TextChange{num_file}.exe");
 							flag = false;
 							MessageBox.Show("Обновление загружено", "Обновить", MessageBoxButtons.OK, MessageBoxIcon.Information);
 						}
