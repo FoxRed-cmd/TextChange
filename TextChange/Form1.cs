@@ -327,5 +327,33 @@ namespace TextChange
 			}
 
 		}
+
+		private void button6_Click(object sender, EventArgs e)
+		{
+			using (WebClient wc = new WebClient())
+			{
+				try
+				{
+					bool flag = true;
+					do
+					{
+						num_file++;
+						save_path = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory);
+						if (!File.Exists($"{save_path + "\\"}File_{num_file}.txt"))
+						{
+							wc.DownloadFile("https://drive.google.com/uc?export=download&id=1M5sU4J6OnBQfmgtJRmhITXeEeRepVPUW", $"{save_path + "\\"}File_{num_file}.zip");
+							flag = false;
+							MessageBox.Show("Обновление загружено", "Обновить", MessageBoxButtons.OK, MessageBoxIcon.Information);
+						}
+					} while (flag);
+				}
+				catch (Exception)
+				{
+					MessageBox.Show("Упс, что-то пошло не так и теперь твоя motherboard сгорела... Ха-ха, шутка)",
+						"Обновление", MessageBoxButtons.OK, MessageBoxIcon.Information);
+				}
+				
+			}
+		}
 	}
 }

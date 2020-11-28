@@ -45,6 +45,7 @@ namespace TextChange
 			this.button1 = new System.Windows.Forms.Button();
 			this.button4 = new System.Windows.Forms.Button();
 			this.button5 = new System.Windows.Forms.Button();
+			this.button6 = new System.Windows.Forms.Button();
 			this.groupBox1.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -260,12 +261,28 @@ namespace TextChange
 			this.button5.Text = "CE";
 			this.button5.UseVisualStyleBackColor = false;
 			// 
+			// button6
+			// 
+			this.button6.BackColor = System.Drawing.SystemColors.ControlLight;
+			this.button6.FlatAppearance.BorderSize = 0;
+			this.button6.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Gray;
+			this.button6.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DarkGray;
+			this.button6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.button6.Image = global::TextChange.Properties.Resources.Загрузка2;
+			this.button6.Location = new System.Drawing.Point(189, 266);
+			this.button6.Name = "button6";
+			this.button6.Size = new System.Drawing.Size(23, 23);
+			this.button6.TabIndex = 5;
+			this.button6.UseVisualStyleBackColor = false;
+			this.button6.Click += new System.EventHandler(this.button6_Click);
+			// 
 			// Form1
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
 			this.ClientSize = new System.Drawing.Size(483, 301);
+			this.Controls.Add(this.button6);
 			this.Controls.Add(this.button5);
 			this.Controls.Add(this.button1);
 			this.Controls.Add(this.textBox1);
@@ -306,6 +323,7 @@ namespace TextChange
 		private System.Windows.Forms.Button button1;
 		private System.Windows.Forms.Button button4;
 		private System.Windows.Forms.Button button5;
+		private System.Windows.Forms.Button button6;
 	}
 }
 
