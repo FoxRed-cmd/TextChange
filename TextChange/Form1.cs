@@ -177,6 +177,8 @@ namespace TextChange
 				button4.ForeColor = SystemColors.ControlText;
 				button5.BackColor = SystemColors.ControlLight;
 				button5.ForeColor = SystemColors.ControlText;
+				button6.BackColor = SystemColors.ControlLight;
+				button6.ForeColor = SystemColors.ControlText;
 				button2.Text = "Dark Mode";
 				for (byte r = 0, g = 0, b = 0; r <= 240 && g <= 240 && b <= 240; r += 10, g += 10, b += 10)
 				{
@@ -210,6 +212,8 @@ namespace TextChange
 				button4.ForeColor = Color.LawnGreen;
 				button5.BackColor = SystemColors.ControlText;
 				button5.ForeColor = Color.LawnGreen;
+				button6.BackColor = SystemColors.ControlText;
+				button6.ForeColor = Color.LawnGreen;
 				button2.Text = "White Mode";
 				for (byte r = 64, g = 64, b = 64; r > 0 && g > 0 && b > 0; r -= 2, g -= 2, b -= 2)
 				{

@@ -8,3 +8,13 @@ D:\Projects\TextChange\TextChange\obj\Release\TextChange.csproj.CoreCompileInput
 D:\Projects\TextChange\TextChange\obj\Release\TextChange.exe
 D:\Projects\TextChange\TextChange\obj\Release\TextChange.pdb
 D:\Projects\TextChange\TextChange\obj\Release\TextChange.csprojAssemblyReference.cache
+C:\Users\Llirik\Documents\Visual Studio 2019\Projects\TextChange\TextChange\bin\Release\TextChange.exe.config
+C:\Users\Llirik\Documents\Visual Studio 2019\Projects\TextChange\TextChange\bin\Release\TextChange.exe
+C:\Users\Llirik\Documents\Visual Studio 2019\Projects\TextChange\TextChange\bin\Release\TextChange.pdb
+C:\Users\Llirik\Documents\Visual Studio 2019\Projects\TextChange\TextChange\obj\Release\TextChange.csprojAssemblyReference.cache
+C:\Users\Llirik\Documents\Visual Studio 2019\Projects\TextChange\TextChange\obj\Release\TextChange.Form1.resources
+C:\Users\Llirik\Documents\Visual Studio 2019\Projects\TextChange\TextChange\obj\Release\TextChange.Properties.Resources.resources
+C:\Users\Llirik\Documents\Visual Studio 2019\Projects\TextChange\TextChange\obj\Release\TextChange.csproj.GenerateResource.cache
+C:\Users\Llirik\Documents\Visual Studio 2019\Projects\TextChange\TextChange\obj\Release\TextChange.csproj.CoreCompileInputs.cache
+C:\Users\Llirik\Documents\Visual Studio 2019\Projects\TextChange\TextChange\obj\Release\TextChange.exe
+C:\Users\Llirik\Documents\Visual Studio 2019\Projects\TextChange\TextChange\obj\Release\TextChange.pdb
