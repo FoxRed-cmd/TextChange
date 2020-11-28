@@ -18,7 +18,7 @@ namespace TextChange
 		long count;
 		long num_file;
 		string save_path;
-		
+
 
 
 		public Form1()
@@ -32,7 +32,6 @@ namespace TextChange
 			radioButton2.Text = "Стиль";
 			radioButton3.Text = "Цвет";
 			radioButton4.Text = "Шрифт";
-			button1.Text = "Пробить IP";
 
 			radioButton1.CheckedChanged += (a, e) =>
 			{
@@ -43,15 +42,15 @@ namespace TextChange
 					try
 					{
 						style = comboBox2.SelectedItem == null ? "Обычный" : comboBox2.SelectedItem.ToString();
-						size = comboBox1.Text == "" ? 8 : Convert.ToInt32(comboBox1.Text);
+						size = comboBox1.Text == "" ? 14 : Convert.ToInt32(comboBox1.Text);
 						Check_style();
 					}
 					catch (Exception ex)
 					{
 						MessageBox.Show(ex.Message + "\n Ай-яй-яй!!! Пиши сюда только цифры) а про 0 забудь вообще...", "Error 404", MessageBoxButtons.OK, MessageBoxIcon.Error);
-						size = 8;
+						size = 14;
 					}
-				}					
+				}
 			};
 			radioButton2.CheckedChanged += (a, e) =>
 			{
@@ -61,7 +60,7 @@ namespace TextChange
 					comboBox2.Visible = false;
 					style = comboBox2.SelectedItem == null ? "Обычный" : comboBox2.SelectedItem.ToString();
 					Check_style();
-				} 
+				}
 			};
 			radioButton3.CheckedChanged += (a, e) =>
 			{
@@ -83,6 +82,22 @@ namespace TextChange
 					font = comboBox4.SelectedItem == null ? "Microsoft Sans Serif" : comboBox4.SelectedItem.ToString();
 					Check_style();
 				}
+			};
+			button4.Click += (a, e) =>
+			{
+				try
+				{
+					Clipboard.SetText(textBox1.Text);
+				}
+				catch (Exception)
+				{
+					MessageBox.Show("Копировать нечего, не жмякай на кнопки просто так...", "Копировать", MessageBoxButtons.OK, MessageBoxIcon.Information);
+				}
+			};
+			button5.Click += (a, e) =>
+			{
+				textBox1.Clear();
+				textBox1.Focus();
 			};
 		}
 		void Check_color()
@@ -123,7 +138,7 @@ namespace TextChange
 				Opacity = i;
 				await Task.Delay(10);
 			}
-			size = 8;
+			size = 14;
 			font = "Microsoft Sans Serif";
 
 			/*char[] arr = welcome.ToCharArray();
@@ -134,7 +149,7 @@ namespace TextChange
 			}*/
 		}
 
-		private void button2_Click(object sender, EventArgs e)
+		async void button2_Click(object sender, EventArgs e)
 		{
 			count++;
 
@@ -158,9 +173,18 @@ namespace TextChange
 				button2.ForeColor = SystemColors.ControlText;
 				button3.BackColor = SystemColors.ControlLight;
 				button3.ForeColor = SystemColors.ControlText;
-				button1.BackColor = SystemColors.ControlLight;
-				button1.ForeColor = SystemColors.ControlText;
+				button4.BackColor = SystemColors.ControlLight;
+				button4.ForeColor = SystemColors.ControlText;
+				button5.BackColor = SystemColors.ControlLight;
+				button5.ForeColor = SystemColors.ControlText;
 				button2.Text = "Dark Mode";
+				for (byte r = 0, g = 0, b = 0; r <= 240 && g <= 240 && b <= 240; r += 10, g += 10, b += 10)
+				{
+					button1.BackColor = Color.FromArgb(r, g, b);
+					await Task.Delay(1);
+				}
+				button1.Text = "";
+				button1.Enabled = false;
 			}
 			else
 			{
@@ -182,9 +206,19 @@ namespace TextChange
 				button2.ForeColor = Color.LawnGreen;
 				button3.BackColor = SystemColors.ControlText;
 				button3.ForeColor = Color.LawnGreen;
-				button1.BackColor = SystemColors.ControlText;
-				button1.ForeColor = Color.LawnGreen;
+				button4.BackColor = SystemColors.ControlText;
+				button4.ForeColor = Color.LawnGreen;
+				button5.BackColor = SystemColors.ControlText;
+				button5.ForeColor = Color.LawnGreen;
 				button2.Text = "White Mode";
+				for (byte r = 64, g = 64, b = 64; r > 0 && g > 0 && b > 0; r -= 2, g -= 2, b -= 2)
+				{
+					button1.BackColor = Color.FromArgb(r, g, b);
+					await Task.Delay(1);
+				}
+				button1.Text = "Пробить IP";
+				button1.Enabled = true;
+				button1.ForeColor = Color.LawnGreen;
 			}
 		}
 
@@ -245,13 +279,13 @@ namespace TextChange
 			try
 			{
 				style = comboBox2.SelectedItem == null ? "Обычный" : comboBox2.SelectedItem.ToString();
-				size = comboBox1.Text == "" ? 8 : Convert.ToInt32(comboBox1.Text);
+				size = comboBox1.Text == "" ? 14 : Convert.ToInt32(comboBox1.Text);
 				Check_style();
 			}
 			catch (Exception ex)
 			{
 				MessageBox.Show(ex.Message + "\n Ай-яй-яй!!! Пиши сюда только цифры) а про 0 забудь вообще...", "Error 404", MessageBoxButtons.OK, MessageBoxIcon.Error);
-				size = 8;
+				size = 14;
 			}
 			style = comboBox2.SelectedItem == null ? "Обычный" : comboBox2.SelectedItem.ToString();
 			color = comboBox3.SelectedItem == null ? "Black" : comboBox3.SelectedItem.ToString();
@@ -270,7 +304,9 @@ namespace TextChange
 				Match match3 = Regex.Match(ip_info, "<city>(.*?)</city>");
 				Match match4 = Regex.Match(ip_info, "<lat>(.*?)</lat>");
 				Match match5 = Regex.Match(ip_info, "<lon>(.*?)</lon>");
-				textBox1.Text = match.Groups[1].Value + "\r\n" + match2.Groups[1].Value + "\r\n" + match3.Groups[1].Value + "\r\n" + match4.Groups[1].Value + "\r\n" + match5.Groups[1].Value;
+				Match match6 = Regex.Match(ip_info, "<query>(.*?)</query>");
+				textBox1.Text = match.Groups[1].Value + "\r\n" + match2.Groups[1].Value + "\r\n" + match3.Groups[1].Value + "\r\n" + match4.Groups[1].Value + "\r\n" + match5.Groups[1].Value + "\r\n" + match6.Groups[1].Value;
+				textBox1.Focus();
 			}
 		}
 		ToolTip toolTip = new ToolTip();
@@ -289,7 +325,7 @@ namespace TextChange
 			{
 				button1_Click(button1, null);
 			}
-			
+
 		}
 	}
 }
