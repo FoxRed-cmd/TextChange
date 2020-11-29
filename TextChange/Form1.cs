@@ -21,6 +21,7 @@ namespace TextChange
 
 
 
+
 		public Form1()
 		{
 			InitializeComponent();
@@ -32,6 +33,7 @@ namespace TextChange
 			radioButton2.Text = "Стиль";
 			radioButton3.Text = "Цвет";
 			radioButton4.Text = "Шрифт";
+
 
 			radioButton1.CheckedChanged += (a, e) =>
 			{
@@ -99,6 +101,7 @@ namespace TextChange
 				textBox1.Clear();
 				textBox1.Focus();
 			};
+
 		}
 		void Check_color()
 		{
@@ -152,6 +155,8 @@ namespace TextChange
 		async void button2_Click(object sender, EventArgs e)
 		{
 			count++;
+			Button[] buttons = { button2, button3, button4, button5, button6 };
+			ComboBox[] comboBoxes = { comboBox1, comboBox2, comboBox3, comboBox4 };
 
 			if (count % 2 == 0)
 			{
@@ -161,24 +166,15 @@ namespace TextChange
 				groupBox1.ForeColor = SystemColors.ControlText;
 				textBox1.BackColor = SystemColors.Window;
 				textBox1.ForeColor = SystemColors.WindowText;
-				comboBox1.BackColor = SystemColors.Window;
-				comboBox2.BackColor = SystemColors.Window;
-				comboBox3.BackColor = SystemColors.Window;
-				comboBox4.BackColor = SystemColors.Window;
-				comboBox1.ForeColor = SystemColors.WindowText;
-				comboBox2.ForeColor = SystemColors.WindowText;
-				comboBox3.ForeColor = SystemColors.WindowText;
-				comboBox4.ForeColor = SystemColors.WindowText;
-				button2.BackColor = SystemColors.ControlLight;
-				button2.ForeColor = SystemColors.ControlText;
-				button3.BackColor = SystemColors.ControlLight;
-				button3.ForeColor = SystemColors.ControlText;
-				button4.BackColor = SystemColors.ControlLight;
-				button4.ForeColor = SystemColors.ControlText;
-				button5.BackColor = SystemColors.ControlLight;
-				button5.ForeColor = SystemColors.ControlText;
-				button6.BackColor = SystemColors.ControlLight;
-				button6.ForeColor = SystemColors.ControlText;
+
+				foreach (ComboBox item in comboBoxes)
+				{
+					item.WhiteComboBox();
+				}
+				foreach (Button item in buttons)
+				{
+					item.WhiteButton();
+				}
 				button2.Text = "Dark Mode";
 				for (byte r = 0, g = 0, b = 0; r <= 240 && g <= 240 && b <= 240; r += 10, g += 10, b += 10)
 				{
@@ -190,30 +186,21 @@ namespace TextChange
 			}
 			else
 			{
-				BackColor = Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+				BackColor = Color.FromArgb(64, 64, 64);
 				ForeColor = SystemColors.ButtonHighlight;
 				groupBox1.BackColor = SystemColors.ControlText;
 				groupBox1.ForeColor = Color.LawnGreen;
 				textBox1.BackColor = SystemColors.ControlText;
 				textBox1.ForeColor = Color.LawnGreen;
-				comboBox1.BackColor = Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-				comboBox2.BackColor = Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-				comboBox3.BackColor = Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-				comboBox4.BackColor = Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-				comboBox1.ForeColor = Color.LawnGreen;
-				comboBox2.ForeColor = Color.LawnGreen;
-				comboBox3.ForeColor = Color.LawnGreen;
-				comboBox4.ForeColor = Color.LawnGreen;
-				button2.BackColor = SystemColors.ControlText;
-				button2.ForeColor = Color.LawnGreen;
-				button3.BackColor = SystemColors.ControlText;
-				button3.ForeColor = Color.LawnGreen;
-				button4.BackColor = SystemColors.ControlText;
-				button4.ForeColor = Color.LawnGreen;
-				button5.BackColor = SystemColors.ControlText;
-				button5.ForeColor = Color.LawnGreen;
-				button6.BackColor = SystemColors.ControlText;
-				button6.ForeColor = Color.LawnGreen;
+
+				foreach (ComboBox item in comboBoxes)
+				{
+					item.DarkComboBox();
+				}
+				foreach (Button item in buttons)
+				{
+					item.DarkButton();
+				}
 				button2.Text = "White Mode";
 				for (byte r = 64, g = 64, b = 64; r > 0 && g > 0 && b > 0; r -= 2, g -= 2, b -= 2)
 				{
@@ -356,7 +343,7 @@ namespace TextChange
 					MessageBox.Show("Упс, что-то пошло не так и теперь твоя motherboard сгорела... Ха-ха, шутка)",
 						"Обновление", MessageBoxButtons.OK, MessageBoxIcon.Information);
 				}
-				
+
 			}
 		}
 	}
