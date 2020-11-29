@@ -3,6 +3,7 @@ using System.Drawing;
 using System.IO;
 using System.Net;
 using System.Text.RegularExpressions;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -319,32 +320,35 @@ namespace TextChange
 
 		}
 
-		private void button6_Click(object sender, EventArgs e)
+		void button6_Click(object sender, EventArgs e)
 		{
-			using (WebClient wc = new WebClient())
+			new Thread(() =>
 			{
-				try
+				using (WebClient wc = new WebClient())
 				{
-					bool flag = true;
-					do
+					try
 					{
-						num_file++;
-						save_path = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory);
-						if (!File.Exists($"{save_path + "\\"}File_{num_file}.txt"))
+						bool flag = true;
+						do
 						{
-							wc.DownloadFile("https://github.com/FoxRed-cmd/TextChange/raw/main/TextChange/bin/Release/TextChange.exe", $"{save_path + "\\"}TextChange{num_file}.exe");
-							flag = false;
-							MessageBox.Show("Обновление загружено", "Обновить", MessageBoxButtons.OK, MessageBoxIcon.Information);
-						}
-					} while (flag);
-				}
-				catch (Exception)
-				{
-					MessageBox.Show("Упс, что-то пошло не так и теперь твоя motherboard сгорела... Ха-ха, шутка)",
-						"Обновление", MessageBoxButtons.OK, MessageBoxIcon.Information);
-				}
+							num_file++;
+							save_path = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory);
+							if (!File.Exists($"{save_path + "\\"}File_{num_file}.exe"))
+							{
 
-			}
+								wc.DownloadFile("https://github.com/FoxRed-cmd/TextChange/raw/main/TextChange/bin/Release/TextChange.exe", $"{save_path + "\\"}TextChange{num_file}.exe");
+								flag = false;
+								MessageBox.Show("Обновление загружено", "Обновить", MessageBoxButtons.OK, MessageBoxIcon.Information);
+							}
+						} while (flag);
+					}
+					catch (Exception)
+					{
+						MessageBox.Show("Упс, что-то пошло не так и теперь твоя motherboard сгорела... Ха-ха, шутка)",
+							"Обновление", MessageBoxButtons.OK, MessageBoxIcon.Information);
+					}
+				}
+			}).Start();
 		}
 	}
 }
